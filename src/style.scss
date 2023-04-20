@@ -1,0 +1,172 @@
+html, body {
+  height: 100%;
+  width: 100%;
+  font-family: "Founders Grotesk", sans-serif;
+  font-size: 16px;
+  line-height: 1;
+  font-weight: 400;
+  text-align: left;
+  margin: 0;
+  padding: 0;
+}
+p {
+  font-size: 1.75rem;
+  text-align: left;
+  font-weight: 300;
+}
+
+h1 {
+  font-family: "The Seasons", serif;
+  font-size: 4rem;
+  font-weight: 700;
+  margin: 0;
+}
+
+.App {
+  position: relative;
+  font-family: sans-serif;
+  text-align: center;
+  height: 100%;
+  width: 100%;
+  overflow-x: hidden;
+  > section div {
+    height: 100%;
+    width: 100%;
+  }
+
+  section {
+    aspect-ratio: 16/9;
+    overflow: hidden;
+  }
+
+  section .section-wrapper > div{
+    display: grid;
+    grid-template-columns: repeat(16, 1fr);
+    grid-template-rows: repeat(8, 1fr);
+    column-gap: 32px;
+    padding: 64px;
+    box-sizing: border-box;
+  }
+
+  .parallax-bg {
+    position: absolute;
+    width: 740px;
+    height: 928px;
+    overflow: hidden;
+    z-index: 1;
+    filter: sepia(0.2) blur(0.4);
+    opacity: 0;
+    display: none;
+    
+
+    #inner {
+      height: 100%;
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      
+  
+      #bounding-box {
+        width: 200px;
+        height: 200px;
+        z-index: 10;
+      }
+      #parallax-img {
+        position: fixed;
+        width: 1920px;
+        height: auto;
+        transform: scale(1.2, 1.2)
+      }
+    }
+
+  }
+
+  section.kelola-about > div{
+    
+    .section-right {
+      grid-column: 11 / span 6;
+      grid-row:  1 / span 6;
+      display: flex;
+      flex-direction: column;
+      padding: 32px;
+
+      .logo img{
+        width: 280px;
+        height: auto;
+      }
+
+      .text-about {
+        max-width: 557px;
+
+        > h1 {
+          text-align: left;
+        }
+      }
+    }
+  }
+
+  section.kelola-properties > div {
+    .section-top {
+      grid-column: 5 / span 8;
+      grid-row: 1 / span 2;
+    }
+
+    .section-bottom {
+      grid-column: 1 / span 16;
+      grid-row: 3 / span 4;
+
+      .items {
+        display: flex;
+        flex-direction: row;
+        column-gap: 32px;
+
+        > div {
+          height: 100%;
+          width: 100%;
+
+          .image {
+            background-color: grey;
+            height: 100%;
+            height: 690px;
+            width: 540;
+          }
+        }
+      }
+    }
+  }
+
+  section.kelola-perks {
+    aspect-ratio: 16/13;
+    mask-image: url("/kelola-graphic-mask.png");
+    -webkit-mask-image: url("/kelola-graphic-mask.png");
+    mask-position: center;
+    -webkit-mask-position: center;
+    mask-size: cover;
+    -webkit-mask-size: cover;
+    mask-repeat: no-repeat;
+    -webkit-mask-repeat: no-repeat;
+    > div {
+      background-image: url("/Slider-The-Tamora-extended.png");
+      background-size: cover; 
+    }
+  }
+
+  section.kelola-partners > div {
+    .section-middle {
+      grid-column: 5 / span 8;
+      grid-row: 1 / span 3;
+      display: flex;
+      flex-direction: column;
+      column-gap: 24px;
+    }
+  }
+}
+
+
+@media only screen and (max-width: 1730){
+  section .section-wrapper > div .parallax-bg {
+    height: 600px;
+    width: 400px;
+  }
+}
