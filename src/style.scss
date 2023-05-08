@@ -1,35 +1,168 @@
-html, body {
+@font-face {
+  font-family: 'The Seasons';
+  src: url("../src/assets/font/The_Seasons/TheSeasonsRegular.ttf") format('truetype');
+}
+
+@font-face {
+  font-family: 'Founders Grotesk';
+  font-weight: 300;
+  src: url("../src/assets/font/Founders_Grotesk/FoundersGrotesk-Light.otf") format('opentype');
+}
+
+@font-face {
+  font-family: 'Founders Grotesk';
+  font-weight: medium;
+  src: url("../src/assets/font/Founders_Grotesk/FoundersGrotesk-Medium.otf") format('opentype');
+}
+
+@font-face {
+  font-family: 'Founders Grotesk';
+  font-weight: 400;
+  src: url("../src/assets/font/Founders_Grotesk/FoundersGrotesk-Semibold.otf") format('opentype');
+}
+
+@font-face {
+  font-family: 'Founders Grotesk';
+  font-weight: bold;
+  src: url("../src/assets/font/Founders_Grotesk/FoundersGrotesk-Bold.otf") format('opentype');
+}
+
+html,
+body {
   height: 100%;
   width: 100%;
   font-family: "Founders Grotesk", sans-serif;
-  font-size: 16px;
+  font-size: 14px;
   line-height: 1;
   font-weight: 400;
   text-align: left;
   margin: 0;
   padding: 0;
 }
+
+[data-scrollbar] {
+  position: fixed !important;
+}
+
 p {
-  font-size: 1.75rem;
+  font-size: 20px;
+  line-height: 1.45;
   text-align: left;
   font-weight: 300;
+
+  @media screen and (min-width: 568px) {
+    font-size: clamp(2.2em, calc(40px - 8vw), 40px);
+  }
+
+  @media screen and (min-width: 1800px) {
+    font-size: 2.2em;
+  }
 }
 
 h1 {
   font-family: "The Seasons", serif;
-  font-size: 4rem;
+  //font-size: 2.28rem;
+  font-size: 3vw;
   font-weight: 700;
   margin: 0;
 }
 
+#p1,
+#p2-compressed,
+#p3-compressed,
+#p4-compressed {
+  visibility: hidden;
+}
+
 .App {
   position: relative;
-  font-family: sans-serif;
+  font-family: "Founders Grotesk", sans-serif;
+  font-weight: 300;
   text-align: center;
   height: 100%;
   width: 100%;
   overflow-x: hidden;
-  > section div {
+
+  .nav-links-wrapper {
+    position: fixed;
+    top: 64px;
+    right: 0;
+
+    .nav-links {
+      position: relative;
+
+      #clipped {
+        height: 116px;
+        width: 100px;
+        position: relative;
+        display: block;
+        -webkit-clip-path: url(#clip);
+        clip-path: url(#clip);
+        cursor: pointer;
+        transform: translateX(0);
+        margin: 0 36px;
+        background: white;
+        overflow: hidden;
+
+        img {
+          object-fit: cover;
+          height: 892px;
+          width: 249px;
+        }
+      }
+
+      ul {
+        list-style: none;
+        position: absolute;
+        width: 245px;
+        top: 0;
+        right: 97px;
+        margin: 0;
+
+        li:first-child {
+          h3 {
+            visibility: visible;
+            opacity: 1;
+          }
+
+          span {
+            visibility: hidden;
+          }
+        }
+
+        li {
+          position: relative;
+          padding-bottom: 8px;
+          width: 100%;
+
+          h3 {
+            margin: 0;
+            padding: 0;
+            font-weight: 300;
+            text-align: right;
+            font-size: 20px;
+            text-transform: uppercase;
+            letter-spacing: 0.2rem;
+            line-height: 24px;
+            visibility: hidden;
+            opacity: 0;
+          }
+
+          span {
+            position: absolute;
+            top: 0;
+            right: -60px;
+            width: 96px;
+            height: 20px;
+            cursor: pointer;
+          }
+        }
+      }
+    }
+  }
+
+
+  >section div {
     height: 100%;
     width: 100%;
   }
@@ -39,13 +172,16 @@ h1 {
     overflow: hidden;
   }
 
-  section .section-wrapper > div{
+  section .section-wrapper>div {
     display: grid;
     grid-template-columns: repeat(16, 1fr);
     grid-template-rows: repeat(8, 1fr);
     column-gap: 32px;
     padding: 64px;
     box-sizing: border-box;
+    max-width: 1600px;
+    max-height: 900px;
+    margin: 0 auto;
   }
 
   .parallax-bg {
@@ -57,7 +193,7 @@ h1 {
     filter: sepia(0.2) blur(0.4);
     opacity: 0;
     display: none;
-    
+
 
     #inner {
       height: 100%;
@@ -65,13 +201,14 @@ h1 {
       display: flex;
       align-items: center;
       justify-content: center;
-      
-  
+
+
       #bounding-box {
         width: 200px;
         height: 200px;
         z-index: 10;
       }
+
       #parallax-img {
         position: fixed;
         width: 1920px;
@@ -82,31 +219,36 @@ h1 {
 
   }
 
-  section.kelola-about > div{
-    
+  section.kelola-about>div {
+
     .section-right {
       grid-column: 11 / span 6;
-      grid-row:  1 / span 6;
+      grid-row: 2 / span 6;
       display: flex;
       flex-direction: column;
       padding: 32px;
+      row-gap: 48px;
 
-      .logo img{
-        width: 280px;
-        height: auto;
+      .logo {
+        height: fit-content;
+
+        img {
+          width: 180px;
+          height: auto;
+        }
       }
 
       .text-about {
         max-width: 557px;
 
-        > h1 {
+        >h1 {
           text-align: left;
         }
       }
     }
   }
 
-  section.kelola-properties > div {
+  section.kelola-properties>div {
     .section-top {
       grid-column: 5 / span 8;
       grid-row: 1 / span 2;
@@ -114,22 +256,42 @@ h1 {
 
     .section-bottom {
       grid-column: 1 / span 16;
-      grid-row: 3 / span 4;
+      grid-row: 3 / span 6;
 
       .items {
         display: flex;
         flex-direction: row;
         column-gap: 32px;
 
-        > div {
+        >div {
           height: 100%;
           width: 100%;
+          display: flex;
+          flex-direction: column;
+          row-gap: 24px;
 
           .image {
+            position: relative;
             background-color: grey;
             height: 100%;
-            height: 690px;
-            width: 540;
+            aspect-ratio: 2 /3;
+            overflow: hidden;
+
+            img {
+              position: absolute;
+              left: -50%;
+              top: 0;
+              width: auto;
+              height: 100%;
+            }
+          }
+
+          .title {
+            font-size: 2rem;
+            letter-spacing: .1rem;
+            text-transform: uppercase;
+            font-weight: 200;
+            height: fit-content;
           }
         }
       }
@@ -138,21 +300,14 @@ h1 {
 
   section.kelola-perks {
     aspect-ratio: 16/13;
-    mask-image: url("/kelola-graphic-mask.png");
-    -webkit-mask-image: url("/kelola-graphic-mask.png");
-    mask-position: center;
-    -webkit-mask-position: center;
-    mask-size: cover;
-    -webkit-mask-size: cover;
-    mask-repeat: no-repeat;
-    -webkit-mask-repeat: no-repeat;
-    > div {
-      background-image: url("/Slider-The-Tamora-extended.png");
-      background-size: cover; 
+
+    >div {
+      background-image: url("../public/Slider-The-Tamora-extended.png");
+      background-size: cover;
     }
   }
 
-  section.kelola-partners > div {
+  section.kelola-partners>div {
     .section-middle {
       grid-column: 5 / span 8;
       grid-row: 1 / span 3;
@@ -163,10 +318,10 @@ h1 {
   }
 }
 
-
-@media only screen and (max-width: 1730){
-  section .section-wrapper > div .parallax-bg {
-    height: 600px;
-    width: 400px;
+@media screen and (max-width: 1850px) {
+  .App .parallax-bg {
+    width: 30%;
+    height: auto;
+    aspect-ratio: 5 / 6;
   }
 }
